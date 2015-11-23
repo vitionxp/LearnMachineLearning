@@ -71,7 +71,7 @@ public class PerceptronClassifier {
 	 * @return
 	 */
 	private double LearnAnswer(Point point) {
-		return point.y * (DotProduct(w, point.x) + b);
+		return point.y * (Matrix.DotProduct(w, point.x) + b);
 	}
 
 	/**
@@ -89,23 +89,7 @@ public class PerceptronClassifier {
 		return;
 	}
 
-	/**
-	 * 进行点乘
-	 * 
-	 * @param x1
-	 *            乘数
-	 * @param x2
-	 *            乘数
-	 * @return 点乘的积
-	 */
-	private double DotProduct(double[] x1, double[] x2) {
-		int len = x1.length;
-		double sum = 0;
-		for (int i = 0; i < len; i++) {
-			sum += x1[i] * x2[i];
-		}
-		return sum;
-	}
+
 
 	/**
 	 * 主程序进行检测
@@ -123,7 +107,7 @@ public class PerceptronClassifier {
 		PerceptronClassifier classifier = new PerceptronClassifier(list);
 		classifier.Classify();
 	}
-
+	
 }
 
 

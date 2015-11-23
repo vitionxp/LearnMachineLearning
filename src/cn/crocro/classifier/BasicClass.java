@@ -19,3 +19,29 @@ class Point {
 
 	}
 }
+
+/**
+ * 矩阵相关运算
+ * 
+ * @author 鳄鱼
+ * 
+ */
+class Matrix {
+	/**
+	 * 点积矩阵运算
+	 * 
+	 * @param x1
+	 *            被乘向量
+	 * @param x2
+	 *            被乘向量
+	 * @return 点积结果
+	 */
+	static public double DotProduct(double[] x1, double[] x2) {
+		int len = x1.length;
+		double sum = 0;
+		for (int i = 0; i < len; i++) {
+			sum += x1[i] * x2[i];
+		}
+		return sum;
+	}
+}
