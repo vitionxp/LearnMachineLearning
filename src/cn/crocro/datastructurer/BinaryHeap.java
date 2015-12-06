@@ -61,7 +61,13 @@ public class BinaryHeap {
 		swapAndUp(index);
 	
 	}
-
+	/**
+	 * 获取根节点的数值
+	 * @return 根节点数值
+	 */
+	public double getRoot(){
+		return arrayList.get(0);
+	}
 	/**
 	 * 删除节点
 	 * 
@@ -69,6 +75,15 @@ public class BinaryHeap {
 	 *            删除不需要的节点
 	 */
 	public void delete(int i) {
+		if(arrayList.size()==1){
+			arrayList.remove(0);
+			return ;
+		}
+		else if(arrayList.size()==2){
+			arrayList.set(0, arrayList.get(1));
+			arrayList.remove(1);
+			return;
+		}
 		swapNode(arrayList.size() - 1, i);
 		arrayList.remove(arrayList.size() - 1);
 		swapAndDown(i);
