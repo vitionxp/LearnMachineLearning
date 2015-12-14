@@ -266,20 +266,25 @@ public class KDTree {
 	 * @return
 	 */
 	public ArrayList<Double> searchNearestNodeByBBF(Data data, int k, int searchNodes, int millseconds) {
+		//保存需要修改的进行二次查找的节点
 		ArrayList<KDNode> nodeList = new ArrayList<>();
 		double[] initArray = new double[k];
 		for (int i = 0; i < k; i++) {
 			initArray[i] = Double.MAX_VALUE;
 		}
+		//对需要查找的列表进行初始化
 		nodeList.add(rootNode);
+		//对需要保存的大顶堆进行初始化，都初始化为最大值
 		BinaryHeap binaryHeap = new BinaryHeap(initArray, Orientation.FROM_LARGE);
 		for(int i=0;i<k;i++){
 			binaryHeap.add(Double.MAX_VALUE);
 		}
 		while (nodeList.size() != 0) {
+			//从列表中获取一个点
 			KDNode node = nodeList.get(0);
 			nodeList.remove(0);
 			while (true) {
+				//通过比较距离进行保存，如果小于K近邻的值，就保存到大顶堆，并且进行重排序。而且进入下一步的节点，把另一边节点进行保存到需要搜索的列表里面。
 				double tempValue = calDistance(data, node.nodes.get(0));
 				if (tempValue < binaryHeap.getRoot()) {
 					binaryHeap.delete(0);
@@ -306,7 +311,7 @@ public class KDTree {
 				}
 			}
 		}
-
+		//返回比较的值
 		return binaryHeap.getArrayList();
 	}
 
